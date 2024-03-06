@@ -226,8 +226,8 @@ def viz_qa(
             leg.set_zorder(zleg)
 
     # Setting the size of the ticks labels on the x axis
-    for tick in ax.xaxis.get_major_ticks():
-        tick.label.set_fontsize(sax)
+    # for tick in ax.xaxis.get_major_ticks():
+    #     tick.label.set_fontsize(sax)
 
     # Setting ticks length and width
     ax.tick_params(axis="both", length=lMticks, width=wMticks, which="major")
@@ -254,9 +254,7 @@ def viz_qa(
 
     # Showing the figure
     fig.savefig(
-        "/Users/bartoszminch/Documents/Repositories/viskit/python/results/{}.png".format(
-            tit
-        ),
+        "./result.png".format(tit),
         dpi=fig.dpi,
     )
 
@@ -277,7 +275,6 @@ class LocalMetric:
         labels: np.ndarray,
         method_name: str,
     ):
-
         (
             X_hds_train,
             X_hds_test,
