@@ -53,12 +53,12 @@ def get_activations_cnn(model, data, size=None):
 
 
 def show_tsne(
-        model_name: str,
-        epochs: int,
-        X: np.ndarray,
-        Y: np.ndarray,
-        Y_predicted: Optional[np.ndarray] = None,
-        init: Optional[str] = None,
+    model_name: str,
+    epochs: int,
+    X: np.ndarray,
+    Y: np.ndarray,
+    Y_predicted: Optional[np.ndarray] = None,
+    init: Optional[str] = None,
 ) -> Tuple[np.ndarray, np.ndarray]:
     scaler = StandardScaler()
     data = scaler.fit_transform(X)
@@ -164,6 +164,7 @@ def compare_projections(datatype, model_name, n_layer, label, size=2000):
     clf.fit(layer_at[:size], label_test)
     plot_new_neuron_projection(x_at, hue=clf.feature_importances_)
 
+
 def plot_discriminative_map(activations, Y_test, size):
     palette = sns.color_palette("bright", 10)
     lst = []
@@ -217,7 +218,9 @@ def compare_discriminative_map(datatype, model_name, n_layer, size):
 def show_seq_projections(datatype, model_name, n_layer, epoch, size=10000):
     init = None
     if "mlp" in model_name:
-        _, _, X_test, Y_test = load_data_mlp(datatype) # X_train, Y_train, X_test, Y_test
+        _, _, X_test, Y_test = load_data_mlp(
+            datatype
+        )  # X_train, Y_train, X_test, Y_test
         model_at = create_multilayer_perceptron(datatype)
         load_weights_from_file(model_at, model_name, 100, epoch)
         layer_at = get_activations_mlp(model_at, X_test[:size], size)[n_layer]
@@ -240,12 +243,9 @@ def show_seq_projections(datatype, model_name, n_layer, epoch, size=10000):
 
     # TODO:
     # Call `show_tsne` to obtain points_transformed, targets
-    points_transformed, targets = show_tsne(model_name,
-                                            100,
-                                            layer_at,
-                                            Y_test[:size],
-                                            Y_pred[:size],
-                                            init)
+    points_transformed, targets = show_tsne(
+        model_name, 100, layer_at, Y_test[:size], Y_pred[:size], init
+    )
 
     return points_transformed, targets
 

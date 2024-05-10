@@ -1,3 +1,7 @@
 .idea
 plots
 *.pdf
+*.png
+*.npy
+dataset
+.ipynb_checkpoints

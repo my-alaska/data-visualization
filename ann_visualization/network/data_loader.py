@@ -8,6 +8,7 @@ from network.constants import *
 MODEL_PATH_PREFIX = "./generated/model/"
 TSNE_PATH_PREFIX = "./generated/tsne/points_"
 
+
 def load_data_mlp(dataType):
     def fix_0(digit):
         return 0 if digit == 10 else digit
